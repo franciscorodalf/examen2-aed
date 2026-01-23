@@ -1,0 +1,53 @@
+# OS / System
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.eclipse/
+.classpath
+.project
+.settings/
+
+# Node.js / Angular (editorial)
+node_modules/
+dist/
+.angular/
+out-tsc/
+bazel-out/
+/editorial/.angular/
+/editorial/node_modules/
+/editorial/dist/
+npm-debug.log
+yarn-error.log
+testem.log
+.sass-cache/
+connect.lock
+coverage/
+lib/
+
+# Java / Maven (editorial-jwt-rest, editorial-v1-unsecured)
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+/editorial-jwt-rest/target/
+/editorial-v1-unsecured/target/
+
+# Logs
+*.log
