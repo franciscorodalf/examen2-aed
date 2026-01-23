@@ -1,0 +1,26 @@
+<section class="card">
+    <h2>Lista de tareas</h2>
+
+    @if (loading) {
+    <p>Cargando...</p>
+    }
+
+    @if (errorMsg) {
+    <p class="error">{{ errorMsg }}</p>
+    }
+
+    @if (!loading && !errorMsg && tasks.length === 0) {
+    <p>No hay tareas todavía.</p>
+    } @else if (!loading && !errorMsg) {
+    <ul class="list">
+        @for (t of tasks; track t.id) {
+        <li class="item">
+            <div class="actions">
+                <a class="btn btn-secondary btn-sm" [routerLink]="['/tareas/editar', t.id]">Editar</a>
+                <button class="btn btn-ghost btn-sm" (click)="remove(t.id)">Eliminar</button>
+            </div>
+        </li>
+        }
+    </ul>
+    }
+</section>

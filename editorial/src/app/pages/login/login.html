@@ -1,0 +1,31 @@
+<section class="card login-container">
+    <h2>Iniciar Sesión</h2>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+        <label>
+            Usuario
+            <input class="input" formControlName="username" type="text" placeholder="user" />
+        </label>
+        @if (form.controls.username.touched && form.controls.username.invalid) {
+        <div class="error">El usuario es obligatorio</div>
+        }
+
+        <label>
+            Contraseña
+            <input class="input" formControlName="password" type="password" placeholder="***" />
+        </label>
+        @if (form.controls.password.touched && form.controls.password.invalid) {
+        <div class="error">La contraseña es obligatoria</div>
+        }
+
+        @if (errorMsg) {
+        <div class="error-box">
+            {{ errorMsg }}
+        </div>
+        }
+
+        <button class="btn btn-primary" type="submit" [disabled]="loading">
+            {{ loading ? 'Entrando...' : 'Entrar' }}
+        </button>
+    </form>
+</section>

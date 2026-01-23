@@ -1,0 +1,37 @@
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+}
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.main-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.muted {
+    color: #666;
+    font-size: .95rem;
+    margin-left: 26px;
+    /* Indent description below title */
+}

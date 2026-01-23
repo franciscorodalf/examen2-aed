@@ -1,0 +1,25 @@
+.login-container {
+    max-width: 400px;
+    margin: 40px auto;
+}
+
+form {
+    display: grid;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.error-box {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid #ef5350;
+}

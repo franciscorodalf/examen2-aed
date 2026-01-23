@@ -1,0 +1,13 @@
+<nav class="nav">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/tareas" routerLinkActive="active">Tareas</a>
+    <a routerLink="/tareas/nueva" routerLinkActive="active">Nueva tarea</a>
+
+    <div class="spacer"></div>
+
+    @if (auth.isLoggedIn()) {
+    <button class="btn-logout" (click)="auth.logout()">Cerrar Sesión</button>
+    } @else {
+    <a routerLink="/login" routerLinkActive="active">Login</a>
+    }
+</nav>
