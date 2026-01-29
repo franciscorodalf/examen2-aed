@@ -18,13 +18,13 @@ public class AuthorApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void getAuthorsUnauthorizedTest() {
-        getServiceUnauthorizedTest(get("/authors", null));
+        getServiceUnauthorizedTest(get("/api/v2/authors", null));
     }
 
     @Test
     void getAuthorsOkTest() {
         String token = loginAndGetToken();
-        var res = get("/authors", token);
+        var res = get("/api/v2/authors", token);
         assertEquals(HttpStatus.OK, res.getStatusCode());
         assertNotNull(res.getBody());
         assertTrue(res.getBody().startsWith("[")); // lista JSON
@@ -32,20 +32,20 @@ public class AuthorApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void getAuthorsInvalidTokenTest() {
-        getServiceUnauthorizedTest(get("/authors", "invalid.token.here"));
+        getServiceUnauthorizedTest(get("/api/v2/authors", "invalid.token.here"));
     }
 
     // ===== GET /authors/{id} =====
 
     @Test
     void getAuthorByIdUnauthorizedTest() {
-        getServiceUnauthorizedTest(get("/authors/1", null));
+        getServiceUnauthorizedTest(get("/api/v2/authors/1", null));
     }
 
     @Test
     void getAuthorByIdOkTest() {
         String token = loginAndGetToken();
-        var res = get("/authors/1", token);
+        var res = get("/api/v2/authors/1", token);
         assertEquals(HttpStatus.OK, res.getStatusCode());
         assertNotNull(res.getBody());
         assertTrue(res.getBody().contains("\"id\":1") || res.getBody().contains("\"id\": 1"));
@@ -53,20 +53,20 @@ public class AuthorApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void getAuthorByIdInvalidTokenTest() {
-        getServiceUnauthorizedTest(get("/authors/1", "bad"));
+        getServiceUnauthorizedTest(get("/api/v2/authors/1", "bad"));
     }
 
     // ===== GET /authors/{id}/books =====
 
     @Test
     void getAuthorBooksUnauthorizedTest() {
-        getServiceUnauthorizedTest(get("/authors/1/books", null));
+        getServiceUnauthorizedTest(get("/api/v2/authors/1/books", null));
     }
 
     @Test
     void getAuthorBooksOkTest() {
         String token = loginAndGetToken();
-        var res = get("/authors/1/books", token);
+        var res = get("/api/v2/authors/1/books", token);
         assertEquals(HttpStatus.OK, res.getStatusCode());
         assertNotNull(res.getBody());
         assertTrue(res.getBody().startsWith("["));
@@ -74,19 +74,20 @@ public class AuthorApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void getAuthorBooksInvalidTokenTest() {
-        getServiceUnauthorizedTest(get("/authors/1/books", "invalid"));
+        getServiceUnauthorizedTest(get("/api/v2/authors/1/books", "invalid"));
     }
 
     // ===== POST /authors =====
 
     @Test
     void createAuthorUnauthorizedTest() {
-        getServiceUnauthorizedTest(postJson("/authors", null, Map.of("name", "Test", "country", "ES")));
+        getServiceUnauthorizedTest(postJson("/api/v2/authors", null, Map.of("name", "Test", "country", "ES")));
     }
+
     @Test
     void createAuthorOkTest() {
         String token = loginAndGetToken();
-        var res = postJson("/authors", token, Map.of("name", "Autor Nuevo", "country", "ES"));
+        var res = postJson("/api/v2/authors", token, Map.of("name", "Autor Nuevo", "country", "ES"));
         assertEquals(HttpStatus.CREATED, res.getStatusCode());
         assertNotNull(res.getBody());
         assertTrue(res.getBody().contains("\"name\"") || res.getBody().contains("Autor Nuevo"));
@@ -94,7 +95,7 @@ public class AuthorApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void createAuthorInvalidTokenTest() {
-        getServiceUnauthorizedTest(postJson("/authors", "bad", Map.of("name", "X", "country", "Y")));
+        getServiceUnauthorizedTest(postJson("/api/v2/authors", "bad", Map.of("name", "X", "country", "Y")));
     }
 
 }

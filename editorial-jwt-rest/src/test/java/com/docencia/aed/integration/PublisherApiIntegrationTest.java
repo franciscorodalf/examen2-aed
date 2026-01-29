@@ -17,13 +17,13 @@ public class PublisherApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void getPublishersUnauthorizedTest() {
-       getServiceUnauthorizedTest(get("/publishers", null));
+        getServiceUnauthorizedTest(get("/api/v2/publishers", null));
     }
 
     @Test
     void getPublishersOkTest() {
         String token = loginAndGetToken();
-        var res = get("/publishers", token);
+        var res = get("/api/v2/publishers", token);
         assertEquals(HttpStatus.OK, res.getStatusCode());
         assertNotNull(res.getBody());
         assertTrue(res.getBody().startsWith("["));
@@ -31,20 +31,20 @@ public class PublisherApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void getPublishersInvalidTokenTest() {
-        getServiceUnauthorizedTest(get("/publishers", "bad"));
+        getServiceUnauthorizedTest(get("/api/v2/publishers", "bad"));
     }
 
     // ===== POST /publishers =====
 
     @Test
     void createPublisherUnauthorizedTest() {
-        getServiceUnauthorizedTest(postJson("/publishers", null, Map.of("name", "Nueva", "city", "Madrid")));
+        getServiceUnauthorizedTest(postJson("/api/v2/publishers", null, Map.of("name", "Nueva", "city", "Madrid")));
     }
 
     @Test
     void createPublisherOkTest() {
         String token = loginAndGetToken();
-        var res = postJson("/publishers", token, Map.of("name", "Nueva", "city", "Madrid"));
+        var res = postJson("/api/v2/publishers", token, Map.of("name", "Nueva", "city", "Madrid"));
         assertEquals(HttpStatus.CREATED, res.getStatusCode());
         assertNotNull(res.getBody());
         assertTrue(res.getBody().contains("\"name\"") || res.getBody().contains("Nueva"));
@@ -52,8 +52,8 @@ public class PublisherApiIntegrationTest extends IntegrationTestBase {
 
     @Test
     void createPublisherInvalidTokenTest() {
-        var res = postJson("/publishers", "bad", Map.of("name", "X", "city", "Y"));
+        var res = postJson("/api/v2/publishers", "bad", Map.of("name", "X", "city", "Y"));
         assertTrue(res.getStatusCode() == HttpStatus.UNAUTHORIZED || res.getStatusCode() == HttpStatus.FORBIDDEN);
     };
-        
+
 }
