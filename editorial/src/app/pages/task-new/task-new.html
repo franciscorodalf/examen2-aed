@@ -11,8 +11,8 @@
         <p class="error">{{ errorMsg }}</p>
         }
         <label>
-            Título
-            <input class="input" formControlName="titulo" />
+            Nombre
+            <input class="input" formControlName="name" />
         </label>
 
         @if (form.controls.name.touched && form.controls.name.invalid) {
@@ -22,14 +22,15 @@
         }
 
         <label>
-            Descripción (opcional)
-            <input class="input" formControlName="descripcion" />
+            Ciudad
+            <input class="input" formControlName="city" />
         </label>
 
-        <label class="check">
-            <input type="checkbox" formControlName="completada" />
-            Completada
-        </label>
+        @if (form.controls.city.touched && form.controls.city.invalid) {
+        <div class="error">
+            La ciudad es obligatoria.
+        </div>
+        }
 
         <div class="row">
             <button class="btn btn-primary" type="submit">{{ isEditing ? 'Actualizar' : 'Guardar' }}</button>

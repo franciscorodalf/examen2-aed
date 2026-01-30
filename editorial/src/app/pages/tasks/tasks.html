@@ -15,6 +15,7 @@
     <ul class="list">
         @for (t of tasks; track t.id) {
         <li class="item">
+            <span>{{ t.name }} ({{ t.city }})</span>
             <div class="actions">
                 <a class="btn btn-secondary btn-sm" [routerLink]="['/tareas/editar', t.id]">Editar</a>
                 <button class="btn btn-ghost btn-sm" (click)="remove(t.id)">Eliminar</button>
